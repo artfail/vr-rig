@@ -12,6 +12,7 @@ public class XRPlayerMove : MonoBehaviour
     Rigidbody _rigidbody;
     Transform camTrans;
     bool justClicked = false;
+    int rot = 0;
 
     void Start()
     {
@@ -27,12 +28,14 @@ public class XRPlayerMove : MonoBehaviour
         {
             if (joyStick.x > .9f)
             {
-                transform.Rotate(0, 90, 0);
+                rot += 90;
+                _rigidbody.MoveRotation(Quaternion.Euler(0, rot, 0));
                 justClicked = true;
             }
             else if (joyStick.x < -.9f)
             {
-                transform.Rotate(0, -90, 0);
+                rot -= 90;
+                _rigidbody.MoveRotation(Quaternion.Euler(0, rot, 0));
                 justClicked = true;
             }
         }
